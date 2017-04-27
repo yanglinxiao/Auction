@@ -1,3 +1,12 @@
-<h1>
-  {{title}}
-</h1>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3">
+      <app-search></app-search>
+    </div>
+    <div class="col-lg-9 col-md-9 col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,32 @@
+<div class="thumbnail">
+  <img [src]="imgUrl" alt="...">
+  <div class="caption">
+    <h4 class="pull-right">{{product.price}}元</h4>
+    <h4>{{product.title}}</h4>
+    <p>{{product.desc}}</p>
+  </div>
+  <div>
+    <app-stars [rating]="product.rating"></app-stars>
+  </div>
+</div>
+
+<div class="well">
+  <div>
+    <button type="button" class="btn btn-success publish-btn" (click)="isComment = !isComment">发表评论</button>
+    <div [hidden]="!isComment">
+      <textarea rows="10" [(ngModel)]="newComment"></textarea>
+      <div class="stars">
+        <app-stars [(rating)]="newRating" [readOnly]="false"></app-stars>
+      </div>
+      <button type="button" class="btn btn-primary pull-right" (click)="addComment()">提交评论</button>
+    </div>
+  </div>
+  <!--<span class="pull-right">{{comments.length}}条评论</span>-->
+  <div class="row" *ngFor="let comment of comments">
+    <hr/>
+    <app-stars [rating]="comment.rating"></app-stars>
+    <span>{{comment.user}}</span>
+    <span class="pull-right">{{comment.publishtime}}</span>
+    <p>{{comment.content}}</p>
+  </div>
+</div>
