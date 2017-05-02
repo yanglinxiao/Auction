@@ -1,17 +1,23 @@
-<form name="searchForm" role="form">
+<form [formGroup]="formModel" (ngSubmit)="OnSearch()" novalidate>
   <div class="form-group">
     <label for="productName">商品名称:</label>
-    <input type="text" class="form-control" id="productName" placeholder="商品名称"/>
+    <input type="text" formControlName="title" class="form-control"  [class.has-error]="formModel.hasError('minlength','name')" id="productName" placeholder="商品名称"/>
+    <span class="help-block" [class.hidden]="!formModel.hasError('minlength','name')">商品名称至少为3位数</span>
   </div>
   <div class="form-group">
     <label for="productPrice">商品价格:</label>
-    <input type="number" class="form-control" id="productPrice" placeholder="商品价格"/>
+    <input type="number" formControlName="price" class="form-control" [class.has-error]="formModel.hasError('positiveNumber','price')" id="productPrice" placeholder="商品价格"/>
+    <span class="help-block" [class.hidden]="!formModel.hasError('positiveNumber','price')">价格必须为正数</span>
   </div>
   <div class="form-group">
     <label for="productCategory">商品类别:</label>
-    <select id="productCategory" class="form-control"></select>
+    <select id="productCategory" formControlName="category" class="form-control">'
+      <option value="-1">全部分类</option>
+      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+    </select>
   </div>
   <div class="form-group">
     <button type="submit" class="btn bg-primary btn-block">搜索</button>
   </div>
 </form>
+

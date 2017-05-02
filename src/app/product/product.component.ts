@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService, Product} from "../share/product.service";
 import {FormControl} from "@angular/forms";
 import 'rxjs/Rx';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-product',
@@ -10,16 +11,21 @@ import 'rxjs/Rx';
 })
 export class ProductComponent implements OnInit {
 
-  private products : Array<Product>;
+  private products : Observable<Product[]>;
+
   private imgUrl : string = 'http://placehold.it/320x150';
-  private searchInput : FormControl = new FormControl();
-  private keyword : string;
+  // private searchInput : FormControl = new FormControl();
+  // private keyword : string;
   constructor(private productService : ProductService) { }
 
   ngOnInit() {
     this.products = this.productService.getProducts();
-    this.searchInput.valueChanges
-      .debounceTime(1000)
-      .subscribe(value => {this.keyword = value;});
-  }
+  //   this.searchInput.valueChanges
+  //     .debounceTime(1000)
+  //     .subscribe(value => {this.keyword = value;});
+    this.productService.searchEvent.subscribe(searchParams => {
+      this.products = this.productService.search(searchParams);
+    });
+   }
+
 }

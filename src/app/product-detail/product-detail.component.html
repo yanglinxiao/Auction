@@ -1,12 +1,12 @@
 <div class="thumbnail">
   <img [src]="imgUrl" alt="...">
   <div class="caption">
-    <h4 class="pull-right">{{product.price}}元</h4>
-    <h4>{{product.title}}</h4>
-    <p>{{product.desc}}</p>
+    <h4 class="pull-right">{{product?.price}}元</h4>
+    <h4>{{product?.title}}</h4>
+    <p>{{product?.desc}}</p>
   </div>
   <div>
-    <app-stars [rating]="product.rating"></app-stars>
+    <app-stars [rating]="product?.rating"></app-stars>
   </div>
 </div>
 

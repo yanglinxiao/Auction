@@ -1,12 +1,12 @@
-<div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="form-group">
-      <input type="text" [formControl]="searchInput" class="form-control" placeholder="Search..">
-    </div>
-  </div>
-</div>
+<!--<div class="row">-->
+  <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+    <!--<div class="form-group">-->
+      <!--<input type="text" [formControl]="searchInput" class="form-control" placeholder="Search..">-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
-<div *ngFor="let product of products | searchProduct:'title':keyword " class="col-lg-4 col-md-4 col-sm-4">
+<div *ngFor="let product of products | async" class="col-lg-4 col-md-4 col-sm-4">
   <div class="thumbnail">
     <img [src]="imgUrl" alt="...">
     <div class="caption">
