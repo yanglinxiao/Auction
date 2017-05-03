@@ -10,6 +10,13 @@
   </div>
 </div>
 
+<div class="thumbnail">
+  <button class="btn btn-success" [ngClass]="{'active': isWatched}" (click)="watchProduct()">
+    {{isWatched ? '取消关注' : '关注'}}
+  </button>
+  <label>最新价格：{{currentPrice | number : '.2-2'}}</label>
+</div>
+
 <div class="well">
   <div>
     <button type="button" class="btn btn-success publish-btn" (click)="isComment = !isComment">发表评论</button>
